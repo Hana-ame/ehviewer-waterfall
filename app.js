@@ -219,4 +219,14 @@
   } else {
     setStatus("就绪。粘贴画廊链接或打开 /s/ 路径开始。");
   }
+
+  // hash 路由变化时重新加载（GitHub Pages 纯静态，hash 不触发 reload）
+  window.addEventListener("hashchange", () => {
+    const hp = location.hash.startsWith("#") ? location.hash.slice(1) : "";
+    const p = parseInput(hp);
+    if (p) {
+      inputEl.value = hp;
+      start(hp);
+    }
+  });
 })();
