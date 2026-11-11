@@ -1,5 +1,5 @@
 /* E-Hentai 瀑布流查看器 - Service Worker (PWA) */
-const CACHE_NAME = "ehwv-wf-v1";
+const CACHE_NAME = "ehwv-wf-v2";
 const urlsToCache = ["./", "./index.html", "./style.css", "./app.js", "./manifest.json"];
 
 self.addEventListener("install", (event) => {
@@ -20,21 +20,20 @@ self.addEventListener("activate", (event) => {
 
 self.addEventListener("fetch", (event) => {
   const req = event.request;
-  // 只缓存同源静态资源（页面/样式/脚本）
+  // 只处理同源 GET；跨源请求（ehwv / hath）不拦截
   if (req.method !== "GET" || !req.url.startsWith(self.location.origin)) return;
-  // 跨源请求（ehwv / hath）不拦截，走网络
+  // 静态资源用 network-first（保证部署更新即时生效），回退缓存
   event.respondWith(
-    caches.match(req).then((cached) => {
-      if (cached) return cached;
-      return fetch(req)
-        .then((resp) => {
-          if (resp.ok && new URL(req.url).pathname !== "/s/") {
-            const clone = resp.clone();
-            caches.open(CACHE_NAME).then((cache) => cache.put(req, clone)).catch(() => {});
-          }
-          return resp;
-        })
-        .catch(() => caches.match("./index.html"));
-    })
+    fetch(req)
+      .then((resp) => {
+        if (resp.ok && new URL(req.url).pathname !== "/s/") {
+          const clone = resp.clone();
+          caches.open(CACHE_NAME).then((cache) => cache.put(req, clone)).catch(() => {});
+        }
+        return resp;
+      })
+      .catch(() =>
+        caches.match(req).then((cached) => cached || caches.match("./index.html"))
+      )
   );
 });
