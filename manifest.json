@@ -1,0 +1,22 @@
+{
+  "name": "E-Hentai 瀑布流查看器",
+  "short_name": "EH 瀑布流",
+  "description": "e-hentai 画廊瀑布流查看器：纯前端 + api-pack 代理 + PWA",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#1a1a1f",
+  "theme_color": "#000000",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Crect width='192' height='192' fill='%231a1a1f'/%3E%3Ctext x='96' y='120' font-size='110' text-anchor='middle' fill='%234f8cff'%3E%E6%9B%BF%3C/text%3E%3C/svg%3E",
+      "sizes": "192x192",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' fill='%231a1a1f'/%3E%3Ctext x='256' y='320' font-size='300' text-anchor='middle' fill='%234f8cff'%3E%E6%9B%BF%3C/text%3E%3C/svg%3E",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

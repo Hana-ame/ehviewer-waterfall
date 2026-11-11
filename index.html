@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#000000">
+<title>E-Hentai 瀑布流查看器</title>
+<link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">E-Hentai 瀑布流</div>
+  <form id="load-form" class="load-form">
+    <input id="load-input" type="text" placeholder="粘贴 e-hentai 画廊链接 或 gid/token（如 /g/4322043/ac00054054/）" autocomplete="off">
+    <button type="submit">加载</button>
+  </form>
+  <div class="controls">
+    <button id="btn-auto" class="ctrl" title="自动连续加载">自动</button>
+    <button id="btn-copy" class="ctrl" title="复制当前图片外链">复制外链</button>
+    <button id="btn-reload" class="ctrl" title="重新加载">重载</button>
+  </div>
+</header>
+<main id="stage" class="stage">
+  <div id="welcome" class="welcome">
+    <h1>E-Hentai 瀑布流查看器</h1>
+    <p>粘贴一个 e-hentai 画廊链接（<code>/g/&lt;gid&gt;/&lt;token&gt;/</code>）或直接打开一个 <code>/s/&lt;hash&gt;/&lt;gid&gt;-&lt;page&gt;</code> 路径。</p>
+    <p class="hint">页面数据经 <code>ehwv.moonchan.xyz</code> 代理获取；图片直连 <code>hath.network</code>。</p>
+  </div>
+  <div id="waterfall" class="waterfall"></div>
+</main>
+<footer id="status" class="status">就绪</footer>
+<script src="app.js"></script>
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('sw.js').catch(() => {});
+    });
+  }
+</script>
+</body>
+</html>
