@@ -13,8 +13,11 @@
 ## 用法
 
 - 打开 `https://hana-ame.github.io/ehviewer-waterfall/`
-- 粘贴 e-hentai 画廊链接（`https://e-hentai.org/g/<gid>/<token>/`）或直接打开 `/s/<hash>/<gid>-<page>` 路径
+- 粘贴 e-hentai 画廊链接（`https://e-hentai.org/g/<gid>/<token>/`）
+- 或直接用 hash 路由打开：`https://hana-ame.github.io/ehviewer-waterfall/#/s/<hash>/<gid>-<page>`、`#/g/<gid>/<token>/`
 - 点「自动」连续瀑布流加载；「复制外链」复制当前图片直链
+
+> 注意：GitHub Pages 是纯静态站，无 SPA fallback，直接访问 `/s/...` 路径会 404。请用根路径 + 输入框，或 hash 路由 `#/s/...`。
 
 ## 结构
 

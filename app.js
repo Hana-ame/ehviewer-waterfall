@@ -209,11 +209,13 @@
     location.reload();
   });
 
-  // 初始化：如果 URL 本身是 /s/ 或 /g/，直接加载
-  const init = parseInput(location.pathname);
+  // 初始化：优先 hash 路由 (#/s/... 或 #/g/...)，其次路径 (/s/... /g/...)
+  const hashPath = location.hash.startsWith("#") ? location.hash.slice(1) : "";
+  const initRaw = hashPath || location.pathname;
+  const init = parseInput(initRaw);
   if (init) {
-    inputEl.value = location.pathname;
-    start(location.pathname);
+    inputEl.value = initRaw;
+    start(initRaw);
   } else {
     setStatus("就绪。粘贴画廊链接或打开 /s/ 路径开始。");
   }
